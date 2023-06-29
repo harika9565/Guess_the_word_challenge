@@ -1,0 +1,34 @@
+set array {"mahatmagandhi" "subhashchandrabose" "bhagatsingh" "sardarvallabhbhaipatel" "jawaharlalnehru" "balgangadhartilak" "lalalajpatrai" "ranilaxmibai" "mahadeviverma" "basantidevi"}
+set randname [lindex $array [expr {int(rand()*[llength $array])}]]
+set name [split $randname ""]
+set a [llength $name]
+set display [list]
+for {set i 0} {$i < $a} {incr i} {
+    lappend display "_"
+}
+puts $display
+set end_of_game 0
+set lives [expr $a - 4]
+while {!$end_of_game} {
+    puts "\nenter an alphabet"
+    gets stdin n
+    set n [string tolower $n]
+    for {set position 0} {$position < $a} {incr position} {
+        set letter [lindex $name $position]
+        if {$letter eq $n} {
+            lset display $position $letter
+        }
+    }
+    incr lives -1
+    puts $display
+    if {!([string match "*_*" $display]) || $lives == 0} {
+        set end_of_game 1
+        if {!([string match "*_*" $display])} {
+            puts "you won"
+        } else {
+            puts "you lost"
+            set name_str [join $name ""]
+            puts $name_str
+        }
+    }
+}
