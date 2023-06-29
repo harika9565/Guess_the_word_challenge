@@ -1,4 +1,4 @@
-# Guess_the_word_challenge(in python and perl)
+# Guess_the_word_challenge(in python, perl and Tcl)
 1. The code is a word guessing game where a random name is selected from a list.
 2. The selected name is converted into a list of characters and the length of the name is determined.
 3. A display list is initialized with underscores to represent the unknown letters of the name.
