@@ -1,0 +1,35 @@
+use strict;
+use warnings;
+
+my @array = ('mahatmagandhi', 'subhashchandrabose', 'bhagatsingh', 'sardarvallabhbhaipatel', 'jawaharlalnehru', 'balgangadhartilak', 'lalalajpatrai', 'ranilaxmibai', 'mahadeviverma', 'basantidevi');
+my $randname = $array[rand @array];
+my @name = split('', $randname);
+my $a = scalar @name;
+my @display = ();
+push @display, '_' for (0..$a-1);
+print "@display\n";
+my $end_of_game = 0;
+my $lives = $a - 4;
+while (!$end_of_game) {
+    print "\nenter an alphabet\n";
+    chomp(my $n = lc <STDIN>);
+    for my $position (0..$a-1) {
+        my $letter = $name[$position];
+        if ($letter eq $n) {
+            $display[$position] = $letter;
+        }
+    }
+    $lives -= 1;
+    print "@display\n";
+    if (!(grep {$_ eq '_'} @display) || $lives == 0) {
+        $end_of_game = 1;
+        if (!(grep {$_ eq '_'} @display)) {
+            print "you won\n";
+        }
+        else {
+            print "you lost\n";
+            my $name_str = join('', @name);
+            print "$name_str\n";
+        }
+    }
+}
